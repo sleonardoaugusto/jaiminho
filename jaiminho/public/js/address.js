@@ -9,8 +9,17 @@ frappe.ui.form.on('Address', {
     }
   },
   get_address(frm) {
+    frm.events.clear_fields(frm)
     frm.events._validate(frm)
     frm.events.get(frm)
+  },
+  clear_fields(frm) {
+    frm.doc.address_line1 = null
+    frm.doc.county = null
+    frm.doc.pincode = null
+    frm.doc.city = null
+    frm.doc.state = null
+    frm.refresh()
   },
   _validate(frm) {
     // This try/catch handle undefined index
