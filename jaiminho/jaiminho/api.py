@@ -33,9 +33,11 @@ def validate(req):
 
 def check_status(req):
     error = 'ERROR'
+    if req.status_code == 429:
+        message = 'Muitas consultas, tente novamente mais tarde'
     if req.json().get('status') == error:
         message = req.json().get('message')
-        frappe.throw('Ocorreu um erro: {}'.format(message))
+    frappe.throw('Ocorreu um erro: {}'.format(message))
 
 
 def get_data(req):
