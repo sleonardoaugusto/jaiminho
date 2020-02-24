@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include jaiminho *.css
+recursive-include jaiminho *.csv
+recursive-include jaiminho *.html
+recursive-include jaiminho *.ico
+recursive-include jaiminho *.js
+recursive-include jaiminho *.json
+recursive-include jaiminho *.md
+recursive-include jaiminho *.png
+recursive-include jaiminho *.py
+recursive-include jaiminho *.svg
+recursive-include jaiminho *.txt
+recursive-exclude jaiminho *.pyc
