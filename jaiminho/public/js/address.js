@@ -9,13 +9,16 @@ frappe.ui.form.on('Address', {
     }
   },
   get_address(frm) {
-    frm.events.validate(frm)
+    frm.events._validate(frm)
     frm.events.get(frm)
   },
-  validate(frm) {
-    if (!frm.doc.links[0].link_name) {
+  _validate(frm) {
+    try {
+      frm.doc.links[0].link_name
+    } catch (e) {
       frappe.throw('Aponte o cliente na tabela Referência')
-    } else if (frm.doc.links[0].link_doctype.toLowerCase() !== 'customer') {
+    }
+    if (frm.doc.links[0].link_doctype.toLowerCase() !== 'customer') {
       frappe.throw('O tipo de link na tabela de referência deve ser Cliente')
     }
   },
