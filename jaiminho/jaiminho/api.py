@@ -33,6 +33,7 @@ def validate(req):
 
 def check_status(req):
     error = 'ERROR'
+    message = 'Erro interno'
     if req.status_code == 429:
         message = 'Muitas consultas, tente novamente mais tarde'
     if req.json().get('status') == error:
