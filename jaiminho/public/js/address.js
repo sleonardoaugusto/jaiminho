@@ -13,6 +13,7 @@ frappe.ui.form.on('Address', {
     frm.events.get(frm)
   },
   _validate(frm) {
+    // This try/catch handle undefined index
     try {
       frm.doc.links[0].link_name
     } catch (e) {
