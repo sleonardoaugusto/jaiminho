@@ -10,9 +10,12 @@ import requests
 
 
 @frappe.whitelist()
-def get_address(customer_link):
-    customer = frappe.get_doc('Customer', customer_link)
-    tax_id = clear_tax_id(customer.tax_id)
+def get_address(customer_link=None, cnpj=None):
+    if customer_link:
+        customer = frappe.get_doc('Customer', customer_link)
+        tax_id = clear_tax_id(customer.tax_id)
+    else:
+        tax_id = clear_tax_id(cnpj)
 
     base_url = 'https://www.receitaws.com.br/v1/cnpj/'
     url = '{}{}'.format(base_url, tax_id)
@@ -42,12 +45,4 @@ def check_status(req):
 
 
 def get_data(req):
-    data = req.json()
-    address = dict(
-        address_line1='{}, {}'.format(data.get('logradouro'), data.get('numero')),
-        county=data.get('bairro'),
-        pincode=data.get('cep'),
-        city=data.get('municipio'),
-        state=data.get('uf')
-    )
-    return address
+    return req.json()
